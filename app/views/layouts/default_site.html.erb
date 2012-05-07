@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>BOLT</title>
-    <%= bolt_stylesheet_link_tag "users_style"%>
+    <%= stylesheet_link_tag "/bolt/stylesheets/users_style"%>
     <% bolt_config_javascript_includes.each do |javascript| %>
     <%= javascript_include_tag(javascript) %>
     <% end %>

@@ -53,15 +53,15 @@ padding-bottom:-3px;
       
     </style>
     <title>BOLT</title>
-    <%= stylesheet_link_tag "scaffold" %>
-    <%= stylesheet_link_tag "depot" , :media => "all" %>
+    <%= stylesheet_link_tag "/bolt/stylesheets/scaffold" %>
+    <%= stylesheet_link_tag "/bolt/stylesheets/depot" , :media => "all" %>
     
 
     
-     <%= bolt_stylesheet_link_tag  "jquery.treeview.css"%> 
-       <%= bolt_stylesheet_link_tag "dropdown"%>   
-    <%= bolt_javascript_include_tag "jquery" %>
-    <%= bolt_javascript_include_tag "jquery.treeview.js" %>
+     <%= stylesheet_link_tag  "/bolt/stylesheets/jquery_treeview"%> 
+       <%= stylesheet_link_tag "/bolt/stylesheets/dropdown"%>   
+    <%= javascript_include_tag "/bolt/stylesheets/jquery" %>
+    <%= javascript_include_tag "/bolt/stylesheets/jquery_treeview" %>
        
         
     </head>
