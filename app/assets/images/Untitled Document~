@@ -1,0 +1,97 @@
+<style type="text/css">
+
+.bubblewrap{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+
+.bubblewrap li{
+display:inline;
+width: 65px;
+height:60px;
+}
+
+.bubblewrap li img{
+width: 55px; /* width of each image.*/
+height: 60px; /* height of each image.*/
+border:0;
+margin-right: 12px; /*spacing between each image*/
+-webkit-transition:-webkit-transform 0.1s ease-in; /*animate transform property */
+-o-transition:-o-transform 0.1s ease-in; /*animate transform property in Opera */
+}
+
+.bubblewrap li img:hover{
+-moz-transform:scale(1.8); /*scale up image 1.8x*/
+-webkit-transform:scale(1.8);
+-o-transform:scale(1.8);
+}
+
+</style>
+
+<ul class="bubblewrap">
+<li><a href="http://dynamicdrive.com"> <%= image_tag("user.png",:size => '50x50') %> </a></li>
+
+</ul>
+
+
+
+
+
+<table BORDERCOLOR="lightGrey"bgcolor="Cornsilk "border="1"cellpadding="10" cellspacing="30">
+	<br/>	<br/>
+  <tr>
+    <td style="padding:10px;text-align: center;" bgcolor="white">
+      User Manager<br/>
+      <ul class="bubblewrap">
+       <li><a href= "<%= bolt_users_path%>"> <%= image_tag("user.png",:size => '50x50') %> </a></li>
+       </ul>
+    </td>
+    <td style="padding:10px;text-align: center;" bgcolor="white">
+      Article Manager<br/>
+       <ul class="bubblewrap">
+      <li><a  href="<%= bolt_articles_path %>" ><%= image_tag("article.png",:size => '50x50') %></a></li>
+      </ul>
+
+    </td>
+    <td style="padding:10px;text-align: center;" bgcolor="white">
+      Media Manager<br/>
+       <ul class="bubblewrap">
+     <li> <a  href="<%= bolt_media_path %>" ><%= image_tag("media.png",:size => '50x50') %></a></li>
+     </ul>
+
+    </td>
+    <td style="padding:10px;text-align: center;" bgcolor="white">
+      Page Manager<br/>
+       <ul class="bubblewrap">
+      <li><a href="<%= bolt_pages_path %>" ><%= image_tag("page_manager.png",:size => '40x40') %></a></li>
+      </ul>
+
+    </td>
+  </tr>
+  
+  <tr>
+  	<td style="padding:10px;text-align: center;" bgcolor="white">
+      Category Manger<br/>
+       <ul class="bubblewrap">
+      <li><a  href="<%= bolt_categories_path %>"><%= image_tag("cat.png",:size => '50x50') %></a></li>
+      </ul>
+
+    </td>
+  	
+  	<td style="padding:10px;text-align: center;" bgcolor="white">
+      Blog Manager<br/>
+       <ul class="bubblewrap">
+     <li> <a  href="<%= bolt_blogs_path %>"><%= image_tag("blog.png",:size => '50x50') %></a></li>
+     </ul>
+
+    </td>
+    </tr>
+     
+</table>
+
+
+
+
+
+

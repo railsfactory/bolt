@@ -1,0 +1,10 @@
+
+<h2>Settings</h2>
+
+<%= render :partial => 'bolt/settings/table', :locals => { :settings => @settings } %>
+
+<%= will_paginate @settings %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "add"}Add a new setting".html_safe, new_bolt_setting_path %></li>
+<% end %>

@@ -1,0 +1,27 @@
+<div class="tfContainer" style="float:none;">
+	<h2>Site name</h2><input type ="text" name="bolt_setting[site_name]" value="<%=@setting.site_name%>"/>
+</div>
+
+<div class="tfContainer" style="float:none;">
+	<h2>Slogan</h2><input type ="text" name="bolt_setting[slogan]" value="<%=@setting.slogan%>"/>
+</div>
+
+<div class="tfContainer" style="float:none;">
+	<h2>footer text</h2><input type ="text" name="bolt_setting[footer_text]" value="<%=@setting.footer_text %>"/>
+</div>
+
+<input type="hidden" id="logo_path" name="bolt_setting[logo_path]"/>
+
+<div class="tfContainer" style="float:none;">
+	<p><label>Current Logo</label></p>
+	<img src="<%=@setting.logo_path.gsub('images','assets') %>" />
+</div>
+
+
+<div class="tfContainer" style="float:none;">
+	<button id="opener"><a href="javascript:void(0)">Select Another Logo</a></button>	
+</div>
+
+<div class="clearer" style="float:left;"></div>                                                                            
+
+

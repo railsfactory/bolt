@@ -1,0 +1,2 @@
+module Bolt::GroupsHelper
+end

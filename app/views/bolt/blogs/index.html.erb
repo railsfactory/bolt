@@ -1,0 +1,33 @@
+<script type="text/javascript" src="/assets/javascript_functions.js" ></script>
+<table  width="100%"><td width="1%"><%= image_tag("blog.png") %></td><td><font color="blue" size="5">Blog Manager</td>
+<td><p style="text-align:right;">new&nbsp;&nbsp;edit&nbsp;&nbsp;delete</p>
+<p style="text-align:right;"><a  href="<%= new_bolt_blog_path %>" ><%= image_tag("new.png") %></a>&nbsp;&nbsp;
+<a id="edit" onclick="edit_rec('/bolt/blogs/');" href="javascript:void(0)"><%= image_tag("edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/blogs/destroy_multiple/');"><%= image_tag("delete.png") %></a>
+&nbsp;&nbsp;</p></td></table><br/><br>
+<style type="text/css">
+table { border: 1px solid lightGrey }
+
+#container {
+  
+    width: 100%; }
+td { border: 3px solid white; }
+th { border: 3px solid white; }
+table#container tr:hover td {
+  background-color:cornsilk ;
+}
+
+
+</style>
+
+
+
+<h2>Blogs</h2>
+
+<%= render :partial => 'bolt/blogs/table', :locals => { :blogs => @blogs } %>
+
+<%= will_paginate @blogs %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "add"}Add a new blog".html_safe, new_bolt_blog_path %></li>
+<% end %>

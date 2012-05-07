@@ -1,0 +1,39 @@
+module Backbone
+  
+  class BackboneNotification < ActionMailer::Base
+	
+  	self.prepend_view_path File.join(File.dirname(__FILE__), '..', 'views', 'backbone')
+	
+  	def generate_new_password from, backbone_user, host, pass
+  		@name = backbone_user.name
+  		@host = host
+  		@login = backbone_user.login
+  		@pass = pass
+  		@from_text = backbone_config_website_name
+  		
+  		mail(:to => backbone_user.email, :from => from, :subject => "[#{backbone_config_website_name}] New password")
+  	end
+  
+  	def new_user_information from, backbone_user, host, pass
+      @name = backbone_user.name
+  		@host = host
+  		@login = backbone_user.login
+  		@pass = pass
+  		@from_text = backbone_config_website_name
+  		
+  		mail(:to => backbone_user.email, :from => from, :subject => "[#{backbone_config_website_name}] New user account")
+  	end
+  	
+  	def password_reset_instructions from, backbone_user, host
+  	  ActionMailer::Base.default_url_options[:host] = host.gsub("http://", "")
+      @name = backbone_user.name
+      @host = host
+      @login = backbone_user.login
+      @reset_password_url = edit_backbone_password_reset_url + "/?token=#{backbone_user.perishable_token}"
+      @from_text = backbone_config_website_name
+
+      mail(:to => backbone_user.email, :from => from, :subject => "[#{backbone_config_website_name}] Password reset instructions")
+    end
+
+  end
+end

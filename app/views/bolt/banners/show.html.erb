@@ -1,0 +1,17 @@
+
+<h2>View banner</h2>
+
+<%= form_for @banner, :url => backbone_banner_path(@banner) do |f| %>
+
+	<%= render :partial => 'backbone/banners/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+	  <%= link_to 'Cancel', backbone_banners_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{backbone_show_icon "table"}Back to list".html_safe, backbone_banners_path %></li>
+<% end %>

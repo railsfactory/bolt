@@ -1,0 +1,130 @@
+<br/><br/><br/><h2>View user</h2>
+
+<%= form_for @bolt_user do |f| %>
+<div class="tab">
+  <% if @bolt_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bolt_user.errors.count, "error") %> prohibited this bolt_user from being saved:</h2>
+
+      <ul>
+      <% @bolt_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table id='usr'>
+<tr>
+  <td width='150'><%= f.label :login %></td>
+  <td><%= f.text_field :login, :class=> "inputfield" %></td>    
+</tr>
+
+<tr>
+  <td width='150'><%= f.label :name %></td>
+  <td><%= f.text_field :name, :class=> "inputfield" %></td>    
+</tr>
+
+<tr>
+  <td width='150'><%= f.label :email %></td>
+  <td><%= f.text_field :email, :class=> "inputfield" %></td>    
+</tr>
+
+<tr>
+  <td width='150'><%= f.label :password %></td>
+  <td><%= f.password_field :password, :class=> "inputfield" %></td>    
+</tr>
+<tr>
+  <td width='150'><%= f.label :password_confirmation %></td>
+  <td><%= f.password_field :password_confirmation, :class=> "inputfield" %></td>    
+</tr>	
+
+
+
+<tr><td width="150">Assing Group</td>
+<td>
+<%= f.fields_for :users_groups do |g_fields| %>
+<%= g_fields.hidden_field :group_id %>
+<%= g_fields.check_box :_destroy, {:checked => g_fields.object.persisted?}, 0, 1 %><%= g_fields.object.group.name %>
+<% end %>
+
+<% @groups.each do |ug| 
+     if(!@u_groups.include?(ug.id))
+%>
+<%= f.fields_for :users_groups, @bolt_user.users_groups.build do |g_fields| %>
+<%= g_fields.check_box :group_id, {:checked => false}, ug.id %><%= ug.name %>&nbsp;&nbsp;
+<%   end
+   end
+%>
+<% end %>
+</td>
+</tr>
+</table>
+
+<div class="clearer"></div>
+
+<p class="submits">
+  <%= link_to 'Cancel', bolt_users_path, :class => 'cancel' %> or
+  <%= f.submit "Save changes", :class => "update" %>
+</p>
+<% end %>
+
+<% if @session_user.is_admin? %>
+
+<h2>Reset password (admin action - use carefully)</h2>
+
+<%= form_for @bolt_user, :url => reset_password_bolt_user_path(@bolt_user) do |f| %>
+
+<div class="tfContainer">
+  <%= bolt_password_field f, f.object, :password, {:bolt_label => "New password"} %>
+</div>
+
+<div class="tfContainer tfContainerSecond">
+  <%= bolt_password_field f, f.object, :password_confirmation, {:bolt_label => "Repeat password"} %>
+</div>
+
+<div class="clearer"></div>
+
+<p class="submits">
+  <%= f.submit "Reset", :class => "update" %>
+</p>
+
+<% end %>
+
+<% elsif @session_user.id == @bolt_user.id %>
+
+<h2>Change password</h2>
+
+<%= form_for @bolt_user, :url => update_password_bolt_user_path(@bolt_user) do |f| %>
+
+<div class="tfContainer">
+  <p><%= label_tag :form_current_password, "Current password" %></p>
+  <p><%= password_field_tag :form_current_password, "", {:class => 'boltTextField'} %></p>
+</div>
+
+<div class="tfContainer tfContainerSecond">
+</div>
+
+<div class="tfContainer">
+  <%= bolt_password_field f, f.object, :password, {:bolt_label => "New password"} %>
+</div>
+
+<div class="tfContainer tfContainerSecond">
+  <%= bolt_password_field f, f.object, :password_confirmation, {:bolt_label => "Repeat password"} %>
+</div>
+
+<div class="clearer"></div>
+
+<div class="clearer"></div>
+
+<p class="submits">
+  <%= f.submit "Change", :class => "update" %>
+</p>
+
+<% end %>
+<% end %>
+
+<%= content_for :sidebar do %>
+<% if @session_user.is_admin? %>
+<li><%= link_to "#{bolt_show_icon('table')}Back to list".html_safe, bolt_users_path %></li>
+<% end %>
+<% end %>

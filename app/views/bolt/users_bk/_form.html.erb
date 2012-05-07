@@ -1,0 +1,77 @@
+<fieldset class="biswa">
+<h2>Account Details</h2>
+
+<%= form_for(@bolt_user) do |f| %>
+  <% if @bolt_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bolt_user.errors.count, "error") %> prohibited this bolt_user from being saved:</h2>
+
+      <ul>
+      <% @bolt_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :login_name %><br/>
+    <%= f.text_field :login_name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br/>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :confirm_password %><br/>
+    <%= f.text_field :confirm_password %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br/>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :registration_date %><br/>
+    <%= f.date_select :registration_date %>
+  </div>
+  <div class="field">
+    <%= f.label :last_visit_date %><br/>
+    <%= f.date_select :last_visit_date %>
+  </div>
+  <div class="field">
+    <%= f.label :receive_system_emails %>
+   
+     
+    <%= f.radio_button :receive_system_emails, 'no', :checked => true %> NO
+    <%= f.radio_button :receive_system_emails, 'yes' %> yes
+  </div>
+  <div class="field">
+    <%= f.label :Block_this_user %>
+   
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :Block_this_user, 'no', :checked => true %>NO
+    &nbsp;<%= f.radio_button :Block_this_user, 'yes' %> yes
+  </div>
+    <div class="field">
+    <%= f.label :id%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= @bolt_user.id %>
+ </fieldset><br/>
+
+<fieldset class="biswa1">
+<h2>Assigned User Groups</h2>
+
+ <div class="field">
+    
+   <%  @bolt_user_group.each do |user| %>
+       <input type="checkbox" id="<%=user.id%>" value="<%=user.id%>"/><%=user.name%> <br/>
+   <%  end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

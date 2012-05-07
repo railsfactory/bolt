@@ -1,0 +1,18 @@
+
+
+<h2>Add a new <%= singular_name.humanize.downcase %></h2>
+
+<%%= form_for @<%= file_name %>, :url => bolt_<%= @plural_route %>_path do |f| %>
+	
+	<%%= render :partial => 'bolt/<%= plural_name %>/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+		<%%= link_to 'Cancel', bolt_<%= @plural_route %>_path, :class => 'cancel' %> or
+		<%%= f.submit "Add new <%= singular_name.humanize.downcase %>", :class => "update" %>
+	</p>
+
+<%% end %>
+
+<%%= content_for :sidebar do %>
+	<li><%%= link_to "#{bolt_show_icon "table"}Back to list".html_safe, bolt_<%= @plural_route %>_path %></li>
+<%% end %>

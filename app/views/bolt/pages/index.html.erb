@@ -1,0 +1,34 @@
+<script type="text/javascript" src="/assets/javascript_functions.js" ></script>
+<table  width="100%"><td width="1%"><%= image_tag("page_manager.png",:size=>"40x40") %></td><td><font color="blue" size="6"> Page Manager: Pages</td>
+
+<td><p style="text-align:right;">new&nbsp;&nbsp;edit&nbsp;&nbsp;delete</p>
+<p style="text-align:right;"><a  href="<%= new_bolt_page_path %>" ><%= image_tag("new.png") %></a>&nbsp;&nbsp;
+<a id="edit" onclick="edit_rec('/bolt/pages/');" href="javascript:void(0)"><%= image_tag("edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/pages/destroy_multiple/');"><%= image_tag("delete.png") %></a>
+&nbsp;&nbsp;</p></td></table><br/><br/>
+
+
+<h2>Pages</h2>
+
+
+<%= render :partial => 'bolt/pages/table', :locals => { :pages => @pages } %>
+
+<style type="text/css">
+table { border: 1px solid lightGrey }
+
+#container {
+  
+    width: 100%; }
+td { border: 3px solid white; }
+th { border: 3px solid white; }
+table#container tr:hover td {
+  background-color:cornsilk ;
+}
+
+
+</style>
+<%= will_paginate @pages %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "add"}Add a new page".html_safe, new_bolt_page_path %></li>
+<% end %>

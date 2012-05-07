@@ -1,0 +1,8 @@
+<table  width="100%">
+<td width="6%"><a  href="<%= bolt_articles_path %>" ><b>Articles</b></a></td>
+<td width="7%"><a  href="<%= bolt_categories_path %>" ><B>Categories</b></a></td>
+<td width="7%"><a  href="<%= bolt_accesses_path %>" ><B>Accesses</b></a></td>
+<td><a  href="<%= bolt_statuses_path %>" ><B>Statuses</b></a>
+</td>
+</table>
+<br/><br/>

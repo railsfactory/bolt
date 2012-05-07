@@ -1,0 +1,17 @@
+<table id="container" bgcolor="#F0F0F0" align="left">
+  <tr><thead>
+  	<th align="left"><input type="checkbox" id="chkunchk"  onclick="select_all()"/></th>
+    <th align="left">Name</th>
+    </thead>
+  </tr>
+
+<% @categories.each do |cat| %>
+  <tr>
+  <td style="px"><input class='selall'  type='checkbox' id='chk_<%=cat.id%>'  name ='checkbox' onclick="test()"  value='<%=cat.id %>'></td>
+
+    <td><%= cat.name %></td>
+    
+    
+  </tr>
+<% end %>
+</table>

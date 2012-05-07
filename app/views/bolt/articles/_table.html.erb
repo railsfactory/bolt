@@ -1,0 +1,29 @@
+<table id="container" bgcolor="#F0F0F0" align="left" width="100%">
+  <tr><thead>
+    <th align="left"><input type="checkbox" id="chkunchk"  onclick="select_all()"/></th>
+    <th align="left"><a href = "/bolt/articles?sort=title">Title</th>
+    <th align="left"><a href = "/bolt/articles?sort=alias">Alias</th>
+    <th align="left">Category</th>
+    <th align="left">Status</th>
+    <th align="left">Access</th>
+    <th align="left">Featured</th>
+       </thead> 
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+  <td style="px"><input class='selall'  type='checkbox' id='chk_<%=article.id%>'  name ='checkbox' onclick="test()"  value='<%=article.id %>'></td>
+
+    <td><%= article.title %></td>
+    <td><%= article.alias %></td>
+   <td><% article.categories.each do |g| %>
+     <%= g.name.titleize %>,
+     <% end %>
+   </td>
+    <td><%= article.status.nil? ? "" : article.status.name %></td>
+    <td><%= article.access.nil? ? "" : article.access.name%></td>
+    <td><%= Article::FEATURED_TYPES[article.featured] %></td>
+    
+  </tr>
+<% end %>
+</table>

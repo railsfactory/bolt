@@ -1,0 +1,58 @@
+<h1>Listing bolt_users</h1>
+<p style="text-align:right;">new&nbsp;&nbsp;edit&nbsp;&nbsp;delete</p>
+<p style="text-align:right;"><a  href="/bolt/users/new" ><%= image_tag("new.png") %></a>&nbsp;&nbsp;
+<a id="edit" href=""><%= image_tag("edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="delete" href="#"><%= image_tag("delete.png") %></a>
+&nbsp;&nbsp;</p><br/><br/>
+<style type="text/css">
+table { border: 1px solid black; }
+
+#container {
+  
+    width: 100%; }
+td { border: 3px solid white; }
+th { border: 3px solid white; }
+
+</style>
+<script type="text/javascript">
+
+
+function delete_it(id)
+{
+                        
+ document.getElementById('delete').href="/bolt/users/destroy/"+id;
+ document.getElementById('edit').href="/bolt/users/edit/"+id;
+ 
+}
+</script>
+<table id="container" bgcolor="Cornsilk" align="left">
+  <tr>
+    <td><input type="checkbox"></td>
+  
+    <td><font color="blue">Name</td>
+    <td><font color="blue">Login name</td>
+    <td><font color="blue">User Groups</td>
+    <td><font color="blue">Email</td>
+    <td><font color="blue">Last visit date</td>
+    <td><font color="blue">Registration date</td>
+    <td><font color="blue">ID</td>  	
+  </tr>
+
+<% @bolt_users.each do |bolt_user| %>
+  <tr>
+    <td><input type="checkbox" onclick="delete_it('<%= bolt_user.id %>')"  ></td>
+    <td><%= bolt_user.name %></td>
+    <td><%= bolt_user.login_name %></td>
+    
+     <td><%= bolt_user.email %></td>
+    <td><%= bolt_user.last_visit_date %></td>
+    <td><%= bolt_user.registration_date %></td>
+   <td><%= bolt_user.id %></td>
+ </tr>
+<% end %>
+
+</table>
+
+<br />
+
+

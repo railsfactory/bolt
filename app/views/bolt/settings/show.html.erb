@@ -1,0 +1,82 @@
+<h2>View setting</h2>
+
+<%=form_for @setting, :url => bolt_setting_path(@setting) do |f| %>
+
+<%= render :partial => 'bolt/settings/form', :locals => { :f => f } %>
+	
+<p class="submits">
+	  <%= link_to 'Cancel', bolt_settings_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+</p>
+	
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "table"}Back to list".html_safe,bolt_settings_path %></li>
+<% end %>
+<div id="dialog" title="Basic dialog">
+	<table width="100%" cellspacing="4">
+	<tr><th width="10%" valign="top" align="left">Sr.No</th><th width="90%" align="left" >Image</th></tr>
+		<%i=1%>
+		 <%@site_images.each do |imgages| %>
+		 <%folder_path=(imgages.medium.file_path.include? '/images') ? imgages.medium.file_path.sub('/images','') : imgages.medium.file_path	%>
+			<tr><td valign="top"><%=i%></td><td align="top"><img src='<%=folder_path+"/"+imgages.image_path%>' width='60' height='60'/> 
+    
+					<a  id="<%=folder_path+"/"+imgages.image_path%>" onclick="setnewlogo(this.id);" style="color:red;font-size:12px;cursor:pointer;">Select</a> </td></tr>
+		<%i=i+1
+		end %>
+	</table>
+</div>
+    <link rel="stylesheet" href="/jqueryui/development-bundle/themes/base/jquery.ui.all.css">
+	<script src="/jqueryui/development-bundle/jquery-1.7.1.js"></script>
+	<script src="/jqueryui/development-bundle/external/jquery.bgiframe-2.1.2.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.core.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.widget.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.mouse.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.draggable.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.position.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.resizable.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.dialog.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.effects.core.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.effects.blind.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.effects.explode.js"></script>
+	<script>
+	// increase the default animation speed to exaggerate the effect
+	$.fx.speeds._default = 1000;
+	$(function() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			show: "blind",
+			hide: "explode",
+			height: 530,
+			width: 660,
+			title : 'Select Logo',
+			modal: true,
+			draggable: false
+		});
+
+		$( "#opener" ).click(function() {
+			$( "#dialog" ).dialog( "open" );
+			return false;
+		});
+	});
+	// function getphotos()
+	// {
+		// $.ajax({
+			// type: 'POST',
+			// url: ''
+		// });
+	// }
+	function setnewlogo(logo_path)
+	{		
+  $( "#dialog" ).dialog( "close" )
+  $('#logo_path').val(logo_path);
+	}
+	</script>
+
+<script>
+if($('#logo_path').val()=="")
+{
+$('#logo_path').val("<%=@setting.logo_path%>")
+}
+</script>

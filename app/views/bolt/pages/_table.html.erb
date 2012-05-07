@@ -1,0 +1,29 @@
+<table width="100%" id="container" bgcolor="#F0F0F0" align="left">
+<tr><thead>
+		
+  <th align="left"><input type="checkbox" id="chkunchk"  onclick="select_all()"/></th>		
+<th align="left">Title</th>
+</thead>		
+</tr>
+
+<% pages.each_with_index do |page, index| %>
+	<tr >
+		
+			 <td style="px"><input class='selall'  type='checkbox' id='chk_<%=page.id%>'  name ='checkbox' onclick="test()"  value='<%=page.id %>'></td>
+		
+			
+<td><%= bolt_table_cell_link page.title, bolt_page_path(page) %></td>
+			
+</td>
+</tr>
+   <% ancpage=Page.where(:ancestry => page.id )
+       ancpage.each do |test|%>
+            <tr >
+  <td style="px"><input class='selall'  type='checkbox' id='chk_<%=test.id%>'  name ='checkbox' onclick="test()"  value='<%=test.id %>'></td>
+<td style="padding-left:20px;"><%= bolt_table_cell_link test.title, bolt_page_path(test) %></td>
+			
+</tr>
+     <%end%>
+
+<% end %>
+</table>

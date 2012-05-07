@@ -1,0 +1,18 @@
+
+
+<h2>Add a new blog</h2>
+
+<%= form_for @blog, :url => bolt_blogs_path do |f| %>
+	
+	<%= render :partial => 'bolt/blogs/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+		<%= link_to 'Cancel', bolt_blogs_path, :class => 'cancel' %> or
+		<%= f.submit "Add new blog", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "table"}Back to list".html_safe, bolt_blogs_path %></li>
+<% end %>

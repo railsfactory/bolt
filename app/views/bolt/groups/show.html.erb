@@ -1,0 +1,16 @@
+
+<p id="notice"><%= notice %></p>
+
+
+
+<%= form_for @group, :url => bolt_group_path(@group) do |f| %>
+
+	<%= render :partial => 'bolt/groups/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+	  <%= link_to 'Cancel', bolt_groups_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+	</p>
+
+<% end %>
+

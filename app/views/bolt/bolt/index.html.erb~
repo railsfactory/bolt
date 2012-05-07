@@ -1,0 +1,3 @@
+User Manager<br/>&nbsp;&nbsp;&nbsp;<a  href="/bolt/users" ><%= image_tag("user.png") %></a></p>
+
+Article Manager<br/>&nbsp;&nbsp;&nbsp;<a  href="/bolt/articles" ><%= image_tag("article.png") %></a></p>

@@ -1,0 +1,43 @@
+<script type="text/javascript" src="/assets/javascript_functions.js" ></script>
+
+<table  width="100%"><td width="1%"><%= image_tag("group.png",:size => '40x40') %></td><td><font color="blue" size="5"> User Manager: User Groups</td>
+<td><p style="text-align:right;">new&nbsp;&nbsp;edit&nbsp;&nbsp;delete</p>
+<p style="text-align:right;"><a  href="<%= new_bolt_group_path %>" ><%= image_tag("new.png") %></a>&nbsp;&nbsp;
+<a id="edit" onclick="edit_rec('/bolt/groups/');" href="javascript:void(0)"><%= image_tag("edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/groups/destroy_multiple/');"><%= image_tag("delete.png") %></a>
+&nbsp;&nbsp;</p></td></table><br/><br/>
+
+<%= render :partial=>"title"%>
+
+
+<style type="text/css">
+table { border: 1px solid lightGrey }
+
+#container {
+  
+    width: 100%; }
+td { border: 3px solid white; }
+th { border: 3px solid white; }
+table#container tr:hover td {
+  background-color: cornsilk ;
+}
+
+</style>
+<br/><br/>
+<h1>Groups</h1>
+
+<table id="container" bgcolor="#F0F0F0" align="left">
+  <tr><thead>
+  <th align="left"><input type="checkbox" id="chkunchk"  onclick="select_all()"/></th>
+    <th align="left"><font color="blue"><a href = "/bolt/groups?sort=name">Name</th>
+ </thead> </tr>
+
+<% @groups.each do |group| %>
+  <tr>
+  <td style="px"><input class='selall'  type='checkbox' id='chk_<%=group.id%>'  name ='checkbox' onclick="test()"  value='<%=group.id %>'></td>
+    <td><%= group.name %></td>
+  </tr>
+<% end %>
+</table>
+
+

@@ -1,0 +1,18 @@
+
+
+<h2>Add a new user status</h2>
+
+<%= form_for @user_status, :url => bolt_user_statuses_path do |f| %>
+	
+	<%= render :partial => 'bolt/user_statuses/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+		<%= link_to 'Cancel', bolt_user_statuses_path, :class => 'cancel' %> or
+		<%= f.submit "Add new user status", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "table"}Back to list".html_safe, bolt_user_statuses_path %></li>
+<% end %>

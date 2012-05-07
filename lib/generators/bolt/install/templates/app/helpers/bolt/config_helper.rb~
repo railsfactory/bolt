@@ -1,0 +1,46 @@
+module Backbone
+  module ConfigHelper
+    
+  	# Text string containing the name of the website or client
+  	# Used in text and titles throughout Backbone
+    def backbone_config_website_name
+    	'Backbone'
+    end
+
+  	# URL to the logo used for the login screen and top banner - it should be a transparent PNG
+    def backbone_config_logo
+    	'/backbone/images/backbone.png'
+    end
+
+  	# The server hostname where Backbone will run
+    def backbone_config_hostname
+      if ENV['RAILS_ENV'] == 'production'
+        'http://www.caseincms.com'
+      else
+        'http://localhost:3000'
+      end
+    end
+
+  	# The sender email address used for notifications
+  	def backbone_config_email_from_address
+  		'donotreply@caseincms.com'
+  	end
+	
+  	# The page that the user is shown when they login or click the logo
+  	# do not point this at backbone/index!
+  	def backbone_config_dashboard_url
+  		url_for :controller => :backbone, :action => :blank
+  	end
+	
+  	# A list of stylesheet files to include in the page head section
+  	def backbone_config_stylesheet_includes
+  		%w[/backbone/stylesheets/custom /backbone/stylesheets/screen /backbone/stylesheets/elements]
+  	end
+	
+  	# A list of JavaScript files to include in the page head section
+  	def backbone_config_javascript_includes
+  	  %w[/backbone/javascripts/jquery /backbone/javascripts/custom /backbone/javascripts/backbone /backbone/javascripts/rails]
+  	end
+  	
+  end
+end

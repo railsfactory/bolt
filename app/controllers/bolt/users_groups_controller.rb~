@@ -1,0 +1,99 @@
+module Bolt
+class UsersGroupsController < ApplicationController
+  # GET /bolt/users_groups
+  # GET /bolt/users_groups.json
+  def index
+    @users_groups = UsersGroup.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @users_groups }
+    end
+  end
+
+  # GET /bolt/users_groups/1
+  # GET /bolt/users_groups/1.json
+  def show
+    @users_group = UsersGroup.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @users_group }
+    end
+  end
+
+  # GET /bolt/users_groups/new
+  # GET /bolt/users_groups/new.json
+  def new
+    @users_group = UsersGroup.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render :json => @users_group }
+    end
+  end
+
+  # GET /bolt/users_groups/1/edit
+  def edit
+    @users_group = UsersGroup.find(params[:id])
+  end
+
+  # POST /bolt/users_groups
+  # POST /bolt/users_groups.json
+  def create
+    @users_group = UsersGroup.new(params[:users_group])
+
+    respond_to do |format|
+      if @users_group.save
+        format.html { redirect_to @users_group, :notice => 'Users group was successfully created.' }
+        format.json { render :json => @users_group, :status => :created, :location => @users_group }
+      else
+        format.html { render :action => "new" }
+        format.json { render :json => @users_group.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /bolt/users_groups/1
+  # PUT /bolt/users_groups/1.json
+  def update
+    @users_group = UsersGroup.find(params[:id])
+
+    respond_to do |format|
+      if @users_group.update_attributes(params[:users_group])
+        format.html { redirect_to @users_group, :notice => 'Users group was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @users_group.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /bolt/users_groups/1
+  # DELETE /bolt/users_groups/1.json
+  def destroy
+    @users_group = UsersGroup.find(params[:id])
+    @users_group.destroy
+
+    respond_to do |format|
+      format.html { redirect_to users_groups_url }
+      format.json { head :ok }
+    end
+  end
+  
+   def destroy_multiple
+     ids= params[:id]
+     idarr=ids.split(',')
+     idarr.each do |del|
+      @users_group = UsersGroup.find(del)
+      @users_group.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to :back  }
+      # format.json { head :ok }
+    end
+   end
+   
+end
+end

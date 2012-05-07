@@ -1,0 +1,168 @@
+<link rel="stylesheet" href="/jqueryui/development-bundle/themes/base/jquery.ui.all.css">
+	<script src="/jqueryui/development-bundle/jquery-1.7.1.js"></script>
+	<script src="/jqueryui/development-bundle/external/jquery.bgiframe-2.1.2.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.core.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.widget.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.mouse.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.draggable.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.position.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.resizable.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.ui.dialog.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.effects.core.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.effects.blind.js"></script>
+	<script src="/jqueryui/development-bundle/ui/jquery.effects.explode.js"></script>
+	<script>
+	// increase the default animation speed to exaggerate the effect
+	$.fx.speeds._default = 1000;
+	var image_id = '';
+	$(function() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			show: "blind",
+			hide: "explode",
+			height: 530,
+			width: 660,
+			title : 'Select Banner',
+			modal: true,
+			draggable: false
+		});
+
+		$( "#opener" ).click(function() {
+			
+			$( "#dialog" ).dialog( "open" );
+			return false;
+		});
+		
+		  $("#page_ancestry").change(function(){
+		  	
+			
+			if($("#page_ancestry").val()!='')
+			{
+                
+				image_id = $("#banner_path").val();
+				$('#logo').fadeOut();
+				$("#banner_path").val('');
+				$( "#opener" ).fadeOut();
+			
+			}
+			else
+			{
+				
+				$('#logo').fadeIn();
+				
+				$( "#opener" ).fadeIn();
+						
+			}
+  });
+	});
+	// function getphotos()
+	// {
+		// $.ajax({
+			// type: 'POST',
+			// url: ''
+		// });
+	// }
+	function setnewlogo(logo_path)
+	{
+         alert("railsfactory");
+        document.getElementById('banner_path').value=logo_path;
+	    $('#logo').fadeIn();
+		$( "#banner_src" ).attr( "src", logo_path);
+		$( "#dialog" ).dialog( "close" );
+		
+	}
+	
+	
+
+	</script>
+
+
+<div id="dialog" title="Basic dialog">
+	<table width="100%" cellspacing="4">
+	<tr><th width="10%" valign="top" align="left">Sr.No</th><th width="90%" align="left" >Image</th></tr>
+	<% i=1
+	if(@site_images)
+        @site_images.each do |imgages| 
+        folder_path=(imgages.medium.file_path.include? '/images') ? imgages.medium.file_path.sub('/images','') :      
+        imgages.medium.file_path		
+		%>
+			<tr><td valign="top"><%=i%></td><td align="top"><img src='<%=folder_path+"/"+imgages.image_path%>' width='60' height='60'/> 
+					<a  id="<%=folder_path+"/"+imgages.image_path%>" onclick="setnewlogo(this.id);" style="color:red;font-size:12px;cursor:pointer;">Select</a> </td></tr>
+		<% 
+		i=i+1
+		end 
+		end
+		%>
+	</table>
+</div>
+<input type="hidden" id="banner_path"  name="page[banner_path]" value="<%= @page.banner_path %>"/>
+
+
+<div>
+  <%= bolt_text_field f, f.object, :title %>
+</div>
+<div>
+  Parent: &nbsp;<br/>
+ 
+    <select id="page_ancestry" name="parent">
+    <option value="">None</option>
+    <%  Page.parent_menu.each do |parent| %>
+     <option value="<%=parent.id%>" <%= "selected" if(@page.parent_id == parent.id) %> ><%=parent.title%></option>
+    <% end %>
+    </select>
+</div>
+<br/>
+<% if @page.banner_path %>
+<div id="logo" style="display:block;">
+<p><label style="color:black;">Current Banner:</label></p>
+<p><img src="<%=@page.banner_path%>" id="banner_src"  height="80" alt="No Banner Selected" /></p>
+</div>
+<% end%>
+<button id="opener"><a href="javascript:void(0)">Select Another Banner</a></button>
+
+
+<div id="additional_options" style="display: none;">
+<div class="tfContainer">
+  <%= bolt_text_field f, f.object, :path %>
+</div>
+
+<div class="tfContainer">
+  <%= bolt_text_field f, f.object, :show_in_menu %>
+</div>
+
+<div class="tfContainer tfContainerSecond">
+  <%= bolt_text_field f, f.object, :link_url %>
+</div>
+
+<div class="tfContainer">
+  <%= bolt_text_field f, f.object, :deletable %>
+</div>
+
+<div class="tfContainer tfContainerSecond">
+  <%= bolt_text_field f, f.object, :menu_match %>
+</div>
+
+<div class="tfContainer">
+  <%= bolt_text_field f, f.object, :status %>
+</div>
+
+<div class="tfContainer tfContainerSecond">
+  <%= bolt_text_field f, f.object, :view_template %>
+</div>
+
+<div class="tfContainer">
+  <%= bolt_text_field f, f.object, :default_template %>
+</div>
+</div>
+
+<%= render :partial => "page_sections_form", :locals => {:f => f} %>
+
+
+<div class="tfContainer tfContainerSecond"></div>
+<div class="clearer"></div>
+<% if(params[:id]!='' and (@page.banner_path==' '))%>
+	<script>	
+	
+	$('#logo').fadeIn();
+	</script>
+<% end %>

@@ -1,0 +1,16 @@
+<!-- NOTE: the casein:scaffold generator automatically appends new controllers to this file. The SCAFFOLD_INSERT line must NOT be removed -->
+<li id="visitSite"><%= link_to "Dashboard", bolt_dashboard_path %></li>
+<!-- SCAFFOLD_INSERT -->
+
+<li id="visitSite"><%= link_to "Articles", bolt_articles_path %></li>
+
+<% if(current_user.is_admin?) %>
+<li id="visitSite"><%= link_to "Delta", bolt_delta_path %></li>
+<% end %>
+<% if(current_user.is_admin?) %>
+<li id="visitSite"><%= link_to "Pages", bolt_pages_path %></li>
+<% else %>
+<li id="visitSite"><%= link_to "Page Tree", bolt_pages_tree_path %></li>
+<% end %>
+<li id="visitSite"><%= link_to "Image collections", bolt_image_collections_path %></li>
+<li id="visitSite"><%= link_to "Devices", bolt_devices_path %></li>

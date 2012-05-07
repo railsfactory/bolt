@@ -1,0 +1,3 @@
+  <%= f.fields_for :page_sections, @page.page_sections.build do |page_form| %>
+  <%= page_form.text_area :page_id %>
+  <%  end  %>

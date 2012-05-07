@@ -1,0 +1,18 @@
+
+
+<h2>Add a new page section</h2>
+
+<%= form_for @page_section, :url => bolt_page_sections_path do |f| %>
+	
+	<%= render :partial => 'bolt/page_sections/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+		<%= link_to 'Cancel', bolt_page_sections_path, :class => 'cancel' %> or
+		<%= f.submit "Add new page section", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "table"}Back to list".html_safe, bolt_page_sections_path %></li>
+<% end %>

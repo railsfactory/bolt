@@ -1,0 +1,26 @@
+#banner {
+background:#707070;
+padding-top: 1px;
+padding-bottom: 1px;
+border-bottom: 1px solid;
+font: small-caps 30px/30px "arial", serif;
+color: ;
+text-align: center;
+}
+#banner img {
+float: left;
+}
+#columns {
+background: #141;
+}
+#main {
+margin-left;
+padding-top: 4ex;
+padding-left: 2em;
+background: white;
+}
+
+table#usr tr
+{
+	height:35px;
+}

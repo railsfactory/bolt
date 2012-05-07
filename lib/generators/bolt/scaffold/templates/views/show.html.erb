@@ -1,0 +1,17 @@
+
+<h2>View <%= singular_name.humanize.downcase %></h2>
+
+<%%= form_for @<%= file_name %>, :url => backbone_<%= singular_name %>_path(@<%= singular_name %>) do |f| %>
+
+	<%%= render :partial => 'backbone/<%= plural_name %>/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+	  <%%= link_to 'Cancel', backbone_<%= @plural_route %>_path, :class => 'cancel' %> or
+		<%%= f.submit "Save changes", :class => "update" %>
+	</p>
+
+<%% end %>
+
+<%%= content_for :sidebar do %>
+	<li><%%= link_to "#{backbone_show_icon "table"}Back to list".html_safe, backbone_<%= @plural_route %>_path %></li>
+<%% end %>

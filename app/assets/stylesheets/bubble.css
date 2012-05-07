@@ -1,0 +1,28 @@
+
+.bubblewrap{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+
+.bubblewrap li{
+display:inline;
+width: 65px;
+height:60px;
+}
+
+.bubblewrap li img{
+width: 55px; /* width of each image.*/
+height: 60px; /* height of each image.*/
+border:0;
+margin-right: 12px; /*spacing between each image*/
+-webkit-transition:-webkit-transform 0.1s ease-in; /*animate transform property */
+-o-transition:-o-transform 0.1s ease-in; /*animate transform property in Opera */
+}
+
+.bubblewrap li img:hover{
+-moz-transform:scale(1.8); /*scale up image 1.8x*/
+-webkit-transform:scale(1.8);
+-o-transform:scale(1.8);
+}
+

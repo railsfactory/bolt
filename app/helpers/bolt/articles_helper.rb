@@ -1,0 +1,2 @@
+module Bolt::ArticlesHelper
+end

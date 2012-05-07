@@ -1,0 +1,10 @@
+
+<h2>Page sections</h2>
+
+<%= render :partial => 'bolt/page_sections/table', :locals => { :page_sections => @page_sections } %>
+
+<%= will_paginate @page_sections %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "add"}Add a new page section".html_safe, new_bolt_page_section_path %></li>
+<% end %>

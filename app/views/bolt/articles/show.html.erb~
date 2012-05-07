@@ -1,0 +1,17 @@
+
+<h2>View article</h2>
+
+<%= form_for @article, :url => backbone_article_path(@article) do |f| %>
+
+	<%= render :partial => 'backbone/articles/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+	  <%= link_to 'Cancel', backbone_articles_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{backbone_show_icon "table"}Back to list".html_safe, backbone_articles_path %></li>
+<% end %>

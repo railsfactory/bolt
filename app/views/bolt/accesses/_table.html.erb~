@@ -1,0 +1,17 @@
+<table id="container" bgcolor="#F0F0F0" align="left">
+  <tr><thead>
+  	<th align="left" style="width:10px;"><input type="checkbox" id="chkunchk"  onclick="select_all()"/></th>
+    <th align="left">Name</th>
+    </thead>
+  </tr>
+
+<% @accesses.each do |access| %>
+  <tr>
+  <td style="px"><input class='selall'  type='checkbox' id='chk_<%=access.id%>'  name ='checkbox' onclick="test()"  value='<%=access.id %>'></td>
+
+    <td><%= access.name %></td>
+    
+    
+  </tr>
+<% end %>
+</table

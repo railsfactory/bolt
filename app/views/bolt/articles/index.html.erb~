@@ -1,0 +1,10 @@
+
+<h2>Articles</h2>
+
+<%= render :partial => 'bolt/articles/table', :locals => { :articles => @articles } %>
+
+<%= will_paginate @articles %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "add"}Add a new article".html_safe, new_bolt_article_path %></li>
+<% end %>

@@ -1,0 +1,5 @@
+<h1>New bolt_group</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', bolt_groups_path %>

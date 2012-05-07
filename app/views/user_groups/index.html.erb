@@ -1,0 +1,32 @@
+<h1>Listing bolt_user_groups</h1>
+<script type="text/javascript">
+function message()
+{
+	
+	alert("Are u Sure?")
+	
+	
+}
+</script>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bolt_user_groups.each do |bolt_user_group| %>
+  <tr>
+    <td><%= bolt_user_group.name %></td>
+    <td><%= link_to 'Show', bolt_user_group %></td>
+    <td><%= link_to 'Edit', edit_bolt_user_group_path(bolt_user_group) %></td>
+    <td><a onclick="message();" href="/bolt/user_groups/destroy/<%= bolt_user_group.id %>"> Delete </a></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User group', new_bolt_user_group_path %>

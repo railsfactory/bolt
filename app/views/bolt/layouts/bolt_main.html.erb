@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%= bolt_generate_page_title %></title>
+    <% bolt_config_stylesheet_includes.each do |stylesheet| %>
+    <%= stylesheet_link_tag(stylesheet) %>
+    <% end %>
+    <% bolt_config_javascript_includes.each do |javascript| %>
+    <%= javascript_include_tag(javascript) %>
+    <% end %>
+    
+    <%= javascript_include_tag "http://js.nicedit.com/nicEdit-latest.js" %>
+    <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>    
+    <%= csrf_meta_tag %>
+
+    <%= csrf_meta_tag %>
+    <style type="text/css">
+      
+      p.margin
+      {
+        background-color:Cornsilk;
+      }
+      p.margin1
+      {
+        background-color:#0174DF;
+
+
+padding-top:-3px
+;
+padding-bottom:-3px;
+;
+
+      }
+      
+    </style>
+    <title>BOLT</title>
+    <%= stylesheet_link_tag "scaffold" %>
+    <%= stylesheet_link_tag "depot" , :media => "all" %>
+    <%= stylesheet_link_tag "imagebubbles" , :media => "all" %>
+    
+    <%= javascript_include_tag :defaults %>
+    
+    
+    <%= javascript_include_tag "jquery" %>
+        
+    </head>
+  <body id="store">
+<div id="banner">
+<%= image_tag("logo.png",:size => '100x32' ) %>
+<%= @page_title || "Administration" %>
+</div>
+    <p class="margin1">&nbsp;</p>
+    <table border ="1" width="100%">
+<p class="margin">
+     <a href="#"><h5>Site</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <a href="#">Users</a>&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+<a href="#">News</a>&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+     <a href="#">Contact</h5></a>
+         <p align="right"><a  href="/bolt/user_session" data-method="delete" rel="nofollow"><%= image_tag("logout.png") %></a></p>
+    </p>
+</table>
+   
+    
+      
+    </div>
+    
+    <div id="content">
+      <div id="data">
+	<% if flash[:warning] %>
+	<div id="error">
+	  <%= flash[:warning] %>
+	</div>
+	<% end %>
+	<% if flash[:notice] %>
+	<div id="notice">
+	  <%= flash[:notice] %>
+	</div>
+	<% end %>
+	<%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

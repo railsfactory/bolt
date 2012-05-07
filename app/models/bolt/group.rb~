@@ -1,0 +1,2 @@
+class Bolt::Group < ActiveRecord::Base
+end

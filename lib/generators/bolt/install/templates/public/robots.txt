@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /backbone
+Disallow: /admin
+
+Allow: /

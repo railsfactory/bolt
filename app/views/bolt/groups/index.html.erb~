@@ -1,0 +1,23 @@
+<h1>Listing bolt_groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bolt_groups.each do |bolt_group| %>
+  <tr>
+    <td><%= bolt_group.name %></td>
+    <td><%= link_to 'Show', bolt_group %></td>
+    <td><%= link_to 'Edit', edit_bolt_group_path(bolt_group) %></td>
+    <td><%= link_to 'Destroy', bolt_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Group', new_bolt_group_path %>

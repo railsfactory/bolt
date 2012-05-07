@@ -1,0 +1,64 @@
+<br/><br/><br/><h2>Add a new user</h2>
+
+
+<%= form_for @bolt_user do |f| %>
+<div class="tab">
+  <% if @bolt_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bolt_user.errors.count, "error") %> prohibited this bolt_user from being saved:</h2>
+
+      <ul>
+      <% @bolt_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table id='usr'>
+<tr>
+	<td width='150'><%= f.label :login %></td>
+	<td><%= f.text_field :login, :class=> "inputfield" %></td>    
+</tr>
+
+<tr>
+	<td width='150'><%= f.label :name %></td>
+	<td><%= f.text_field :name, :class=> "inputfield" %></td>    
+</tr>
+
+<tr>
+	<td width='150'><%= f.label :email %></td>
+	<td><%= f.text_field :email, :class=> "inputfield" %></td>    
+</tr>
+
+<tr>
+	<td width='150'><%= f.label :password %></td>
+	<td><%= f.password_field :password, :class=> "inputfield" %></td>    
+</tr>
+<tr>
+	<td width='150'><%= f.label :password_confirmation %></td>
+	<td><%= f.password_field :password_confirmation, :class=> "inputfield" %></td>    
+</tr>	
+
+  
+  <tr><td width="150">Assing Groups</td><td>
+  <% @groups.each do |ug| 
+  
+%>
+<%= f.fields_for :users_groups, @bolt_user.users_groups.build do |g_fields| %>
+<%= g_fields.check_box :group_id, {:checked => false}, ug.id %><%= ug.name %>
+   <%end
+  end
+%></td></tr>
+
+</table>
+
+  
+  
+
+  
+  <p class="submits">
+  <%= link_to 'Cancel', bolt_users_path, :class => 'cancel' %> or
+  <%= f.submit "Add new user", :class => "update" %>
+</p>
+  <%end%>
+

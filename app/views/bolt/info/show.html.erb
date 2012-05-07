@@ -1,0 +1,43 @@
+<table valign="top">
+  <tr>
+    <td valign="top" style="width: 250px;padding-top: 40px;">
+      <div id="menu">
+        <% if(!@categories.blank?) %>
+        <ul class="navmenu">          
+          <% @categories.each do |cat| %>
+          <li><div class="menutop"><a href="#"><%= cat.name %></a><div class="toggle">+</div></div>
+            <% if(!cat.articles.blank?) %>
+            <% cat.articles.each do |article| %>
+            <ul class="submenu">
+              <li><a href="<%= ambiguous_section_url(:cat_name => 'Article', :id => article.id, :title => format_url_id(article.title))%>"><%= article.title %></a></li>              
+            </ul>
+            
+            <% end %>                        
+            <% end %>
+          </li>
+
+          <% end %>          
+          </ul>         
+           <% else %>
+        <ul class="navmenu">
+          <center><h3><%= raw(@article.body)%></h3></center>
+             
+        </ul>
+        <% end %>                    
+      </div>      
+    </td>
+    <% if @page %>
+    <td style="width: 600px;">
+      <% if(!@article.nil?) %>
+      <%= raw(@article.body) %>
+      <% else %>
+      <h1><%= @page.title %></h1>
+      <%= raw(@page.page_sections.first.body) %>
+      <% end %>
+    </td>
+    <td style="float: right;">
+      <%= raw(@page.page_sections.last.body) %>
+    </td>
+    <% end %>
+ </tr>
+</table>

@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @bolt_user.name %>
+</p>
+
+<p>
+  <b>Login name:</b>
+  <%= @bolt_user.login_name %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @bolt_user.password %>
+</p>
+
+<p>
+  <b>Confirm password:</b>
+  <%= @bolt_user.confirm_password %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @bolt_user.email %>
+</p>
+
+<p>
+  <b>Registration date:</b>
+  <%= @bolt_user.registration_date %>
+</p>
+
+<p>
+  <b>Last visit date:</b>
+  <%= @bolt_user.last_visit_date %>
+</p>
+
+<p>
+  <b>Receive system emails:</b>
+  <%= @bolt_user.receive_system_emails %>
+</p>
+
+<p>
+  <b>Block this user:</b>
+  <%= @bolt_user.Block_this_user %>
+</p>
+
+<p>
+  <b>Public:</b>
+  <%= @bolt_user.public %>
+</p>
+
+<p>
+  <b>Manager:</b>
+  <%= @bolt_user.manager %>
+</p>
+
+<p>
+  <b>Administrator:</b>
+  <%= @bolt_user.administrator %>
+</p>
+
+<p>
+  <b>Registered:</b>
+  <%= @bolt_user.registered %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @bolt_user.author %>
+</p>
+
+<p>
+  <b>Editor:</b>
+  <%= @bolt_user.editor %>
+</p>
+
+<p>
+  <b>Publisher:</b>
+  <%= @bolt_user.publisher %>
+</p>
+
+<p>
+  <b>Shop suppliers:</b>
+  <%= @bolt_user.shop_suppliers %>
+</p>
+
+<p>
+  <b>Customer group:</b>
+  <%= @bolt_user.customer_group %>
+</p>
+
+<p>
+  <b>Super users:</b>
+  <%= @bolt_user.super_users %>
+</p>
+
+
+<%= link_to 'Edit', edit_bolt_user_path(@bolt_user) %> |
+<%= link_to 'Back', bolt_users_path %>

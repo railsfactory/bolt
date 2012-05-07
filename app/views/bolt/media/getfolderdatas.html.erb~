@@ -1,0 +1,31 @@
+<table cellpadding="2" cellspacing="4" align="left">
+	<tr>
+	<% 
+		@folder_data.each do |datum|
+		folder_path=(datum.medium.file_path.include? '/images') ? datum.medium.file_path.sub('/images','') : datum.medium.file_path		
+	%>				
+	<td width="75" id="image_<%= datum.id %>" height="80"><!-- <a id="<%=datum.id%>" rel="lightbox" href="<%= folder_path+"/"+datum.image_path %>"> -->
+	<% if(datum.image_path.to_s.include?(".gif") or datum.image_path.to_s.include?(".png") or datum.image_path.to_s.include?(".jpg") or datum.image_path.to_s.include?(".jpeg"))%>
+		<img max-width="75" height="80" src='<%= folder_path+"/"+datum.image_path %>' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>	
+	<% elsif(datum.image_path.to_s.include?(".doc") or datum.image_path.to_s.include?(".docx")) %>
+	 	<img src='/assets/word.png' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>
+	<% elsif(datum.image_path.to_s.include?(".pdf")) %>
+	    <img src='/assets/pdf.png' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>
+	<% elsif(datum.image_path.to_s.include?(".ppt")) %>
+	    <img src='/assets/ppt.jpg' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>
+	<% elsif(datum.image_path.to_s.include?(".xls")) %>
+	    <img src='/assets/excel.jpg' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>
+   <% elsif(datum.image_path.to_s.include?(".flv") or datum.image_path.to_s.include?(".dat") or datum.image_path.to_s.include?(".mp4")) %>
+	    <img src='/assets/video_icon.jpg' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>
+  <% elsif(datum.image_path.to_s.include?(".mp3")) %>
+	    <img src='/assets/audio_icon.jpg' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>
+	<% else %>
+	    <img src='/assets/file.jpeg' alt="<%=datum.image_path%>" /><br/><a style="font-size: 10px;color:red;" href="javascript:void(0);" onclick="delete_image('<%=datum.medium.file_path+"/"+datum.image_path%>','<%=datum.id%>');">Delete</a></td>
+	
+	<% 
+	    end
+ end %>
+	</tr>
+</table>
+
+

@@ -1,0 +1,18 @@
+
+
+<h2>Add a new page</h2>
+
+<%= form_for @page, :url => bolt_pages_path,:html=>{:multipart=>true} do |f| %>
+	
+	<%= render :partial => 'bolt/pages/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+		<%= link_to 'Cancel', bolt_pages_path, :class => 'cancel' %> or
+		<%= f.submit "Add new page", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "table"}Back to list".html_safe, bolt_pages_path %></li>
+<% end %>

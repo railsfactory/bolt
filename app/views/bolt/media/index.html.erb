@@ -1,0 +1,209 @@
+<script type="text/javascript">
+$(function(){		
+	$("#browser").treeview({collapsed: true });
+	
+	$(".mainfolder").click(function(){
+	   $.cookie('clickedid',this.id);
+        });
+	$(".prtfolder").click(function(){
+            $.cookie('clickedid',this.id);
+          });
+
+});	
+function foldername_valid(foldername)
+{
+	var regex = new RegExp("^[a-z]+$", "gi");
+	if(regex.test(foldername))
+	{
+		return true;
+	}
+	return false;
+}
+function loadFolders(folderid,folderpath,foldertype)
+{
+	//$('#view').html('src','/bolt/media/'+folderid);
+	$('#view').load('/bolt/media/'+folderid);
+	$('#folderpath').val(folderpath);
+	$('#folderparent').val(folderid);
+	if(foldertype=='childfolder')
+	{
+		$('#foldername').hide().fadeOut('slow');
+		$('#create_folder').hide().fadeOut('slow');	
+		$('#delete_folder').show().fadeIn('slow');
+		$('#delfolderid').val(folderid);	
+	}
+	else
+	{
+		$('#foldername').hide().fadeIn('slow');
+		$('#create_folder').hide().fadeIn('slow');
+		$('#delete_folder').hide().fadeOut('slow');
+		$('#delfolderid').val('');
+		
+	}
+}
+function createfolder()
+{		
+	var foldername=$('#foldername').val();
+	var infolder=$('#folderpath').val();
+	var parentfolder=$('#folderparent').val();
+	if(foldername=='')
+	{
+		alert('Please enter folder name');
+		$('#foldername').focus();
+	}
+	else if(!foldername_valid(foldername))
+	{
+		alert('Please enter a valid folder name');
+		$('#foldername').focus();
+	} 
+	else
+	{
+		$.ajax({
+	   	type: 'POST',
+	    url: '<%=create_folder_path%>',
+	    data: 'folder='+foldername+'&infolder='+infolder+'&parentfolder='+parentfolder,
+	    success: function(data){
+	    	//alert(data)
+			window.location.reload(true);
+			}		
+		});
+	}	
+}
+function deletefolder()
+{
+	var folderpath=$('#folderpath').val();
+	var delfolderid=$('#delfolderid').val();
+	if(delfolderid=='')
+	{
+		alert('Trying to delete wrong directory!')
+		return false;
+	}
+	else
+	{
+		$.ajax({
+		   	type: 'POST',
+		    url: '<%=delete_folder_path%>',
+		    data: 'folder='+folderpath+'&delfolder='+delfolderid,
+		    success: function(data){
+                                          	    	
+				$('#folderpath_'+delfolderid).html('')
+alert(data)
+			window.location.reload(true);
+				}		
+			});
+	}	
+}
+function testfiletype()
+{	
+	var uplodoadfile = $('#upload_datafile').val();
+	var file_type = uplodoadfile.split('.').pop().toLowerCase();
+	var uploadinfolder=$('#folderpath').val().split('/');	
+	var image_allowed_type=['png','jpg','gif','jpeg'];
+	var audio_allowed_type=['mp3','mpa'];
+	if(uplodoadfile == '')
+	{
+		alert('Please select a file to upload');
+		return false;
+	}
+	else if(uploadinfolder[2]=='images' && ($.inArray(file_type,image_allowed_type)) == -1)
+	{
+		alert('Please select a valid file for the image directory');
+		return false;		
+	}
+	else if(uploadinfolder[2]=='audios' && ($.inArray(file_type,audio_allowed_type)== -1))
+	{
+		
+		alert('Please select a valid file for the '+uploadinfolder[2]+' directory');
+		return false;
+	} 	
+	return true;
+}
+function delete_image(image_path,image_id)
+{
+	//alert(image_path+','+image_id)
+	if(image_path!='')
+	{
+		$.ajax({
+		    type: 'POST',
+		    url: '<%=delete_file_path%>',
+		    data: 'image_path='+image_path+'&image_id='+image_id,
+		    success: function(data){	    	
+			$('#image_'+image_id).html('')	
+				
+				}		
+			});
+	}		
+}
+</script>
+<fieldset>
+	<legend>Media Manager</legend>
+	<table  width="100%"><td width="1%"><%= image_tag("media.png",:size => '40x40') %></td><td><font color="blue" size="5">Media Manager</td>
+<table width="100%" height="480" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="20%" valign="top">			
+			<ul id="browser" class="filetree">
+				<%  @media.each do |post| %>
+				<li id="<%=post.id%>">
+					<img src='/assets/folder.gif'/>
+					<span>
+						<a class="mainfolder" onclick="loadFolders(this.id,'<%=post.file_path%>','parentfolder');" href="javascript:void(0)" id="<%=post.id%>"> <%= post.link_title %></a>
+					</span><% childs = Medium.where("parent_id = ? ",post.id)
+					childs.each do |child|
+					 %>
+					<ul>
+						<li id="<%=child.id%>"><img src='/assets/folder.gif' />
+							<a onclick="loadFolders(this.id,'<%=child.file_path%>','childfolder');" id="<%= child.id %>" href="javascript:void(0);" class="prtfolder"><%=child.link_title%></a>
+						</li>
+					</ul>
+					<% end %>
+				</li>
+				<% end %>		
+			</ul>
+	   </td>
+	   <td valign="top" align="right">
+			
+			
+				<fieldset >
+					<legend>Files</legend>
+					<div class="view" id="view">
+						
+					</div>
+					
+		
+					<form action="<%= bolt_media_uploadFile_path %>" enctype="multipart/form-data" method="post" onsubmit="return testfiletype();">             
+					
+					<input type="hidden" value="1" name="859c76ecb585a4fb66eb80a33dc57446">	
+				</fieldset>
+				<div class="path">
+						Folder Path: <input type="text" readonly="readonly" id="folderpath" name="folderpath" class="inputbox" value="/assets/images">
+						<button type="button" onclick="deletefolder();" id="delete_folder" style="display: none;">Delete Folder</button>
+						<input type="text" name="foldername" id="foldername" class="inputbox">
+						<input type="hidden" name="folderparent" id="folderparent" value="1">
+						<input type="hidden" name="delfolderid" id="delfolderid" value="">
+						<button type="button" onclick="createfolder();" id="create_folder">Create Folder</button>
+					</div>			
+				<!-- File Upload Form -->
+				<fieldset id="uploadform">
+					<legend>Upload files <!-- (Maximum Size: 10 MB) --></legend>
+					<fieldset class="actions" id="upload-noflash">
+						          
+							<p><label for="upload_file">Select File</label> : 
+							<%= file_field 'upload', 'datafile' %></p>
+							<%= submit_tag "Upload" %>
+						</form>
+
+					</fieldset>					
+				</fieldset>
+			</form>
+					
+	   </td>
+	</tr>
+	
+</table>
+</fieldset>
+<script>
+loadFolders(1,'/assets/images','parentfolder');
+$(function(){	
+alert($.cookie("clickedid"));
+});
+</script>

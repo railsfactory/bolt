@@ -1,0 +1,60 @@
+<script type="text/javascript" src="/assets/javascript_functions.js" ></script>
+
+<table  width="100%"><td width="1%"><%= image_tag("user.png",:size => '40x40') %></td><td><font color="blue" size="5"> User Manager: Users</td>
+
+<td><p style="text-align:right;">new&nbsp;&nbsp;edit&nbsp;&nbsp;delete</p>
+<p style="text-align:right;"><a  href="<%= new_bolt_user_path %>" ><%= image_tag("new.png") %></a>&nbsp;&nbsp;
+<a id="edit" onclick="edit_rec('/bolt/users/');" href="javascript:void(0)"><%= image_tag("edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/users/destroy_multiple/');"><%= image_tag("delete.png") %></a>
+&nbsp;&nbsp;</p></td></table><br/><br>
+<%= render :partial=>'title'%>
+<br/><br/>
+<h2>Users</h2>
+<style type="text/css">
+table { border: 1px solid lightGrey }
+
+#container {
+  
+    width: 100%; }
+tr { border: 3px solid white; }
+td { border: 3px solid white; }
+th { border: 3px solid white; }
+table#container tr:hover td {
+  background-color:cornsilk ;
+}
+
+
+</style>
+
+<table id="container" bgcolor="#F0F0F0" align="left">
+  <tr>
+    <thead>
+  <th align="left"><input type="checkbox" id="chkunchk"  onclick="select_all()"/></th>
+   <th align="left"><a href = "/bolt/users?sort=name">Name</th>
+    <th align="left">Login name</th>
+    <th align="left">User Groups</th>
+    <th align="left"><a href = "/bolt/users?sort=email">Email</th>
+    <th align="left">Registration date</th>
+    <th align="left"><a href = "/bolt/users?sort=id">ID</th> 
+    </thead></tr>
+
+<% @bolt_users.each do |bolt_user| %>
+  <tr>
+     <td style="px"><input class='selall'  type='checkbox' id='chk_<%=bolt_user.id%>'  name ='checkbox' onclick="test()"  value='<%=bolt_user.id %>'></td>
+    <td><%= bolt_user.name %></td>
+    <td><%= bolt_user.login %></td>
+    <td><% bolt_user.groups.each do |g| %>
+		<%= g.name.titleize %>,
+	     <% end %>
+    </td>
+     <td><%= bolt_user.email %></td>
+    <td><%= bolt_user.created_at.strftime("%B %d, %Y")%></td>
+
+   <td><%= bolt_user.id %></td>
+ </tr>
+<% end %>
+
+</table>
+
+<%#= will_paginate @users %>
+

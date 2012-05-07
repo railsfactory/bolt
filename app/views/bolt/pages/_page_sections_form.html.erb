@@ -1,0 +1,39 @@
+<style type="text/css">
+  span.active tab {
+    color: green;
+    cursor: pointer;
+  }
+  
+</style>
+<div>
+  <span id="tab_body" class="active tab" style="cursor: pointer;" onclick="$('#main_body').css('display','block');$('#section_body').css('display','none');$('#tab_body').css('text-decoration','underline');$('#tab_section_body').css('text-decoration','none');"><b>Body</b></span>&nbsp;&nbsp;&nbsp;
+  <span id="tab_section_body" style="border: 1px;cursor: pointer;" onclick="$('#main_body').css('display','none');$('#section_body').css('display','block');$('#tab_section_body').css('text-decoration','underline');$('#tab_body').css('text-decoration','none');"><b>Section Body</b></span>
+</div>
+<div style="margin-bottom: 5px;width: 800px;height: 2px;border-bottom: 2px solid black;"></div>
+
+<% if(action_name == "new") %>
+<%= f.fields_for :page_sections, @page.page_sections.build do |page_form| %>
+<div id="main_body">
+  <%= page_form.text_area :body, :style=>"height: 300px;width: 800px;" %>
+  
+</div>
+<div id="section_body" style="display: none;">
+  <%= text_area_tag "page[page_sections_attributes][1][body]", "",:style=>"height: 300px;width: 800px;" %>
+</div>
+<%  end  %>
+<% else %>
+<% count = 0 %>
+<%= f.fields_for :page_sections do |page_form| %>
+<% count += 1
+   style_str = ""
+   style_str = "display: none;" if(count % 2 == 0)
+   id_str = "main_body"
+   id_str = "section_body" if(count % 2 == 0)
+%>
+<div id="<%= id_str %>" style="<%= style_str %>">
+  <%= page_form.hidden_field :page_id %>
+  <%= page_form.text_area :body, :style=>"height: 300px;width: 800px;" %>  
+</div>
+<%  end  %>
+<% end %>
+

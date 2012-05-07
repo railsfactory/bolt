@@ -1,0 +1,26 @@
+unless @error_message.blank?
+  xml.dict do
+    xml.key "responseCode"
+    xml.integer "1"
+    xml.key "responseMessage"
+    xml.string @error_message
+  end
+else
+  xml.dict do
+    xml.key "responseCode"
+    xml.integer "0"
+    if(@obj.class == ActiveRecord::Relation)	
+      title_name = @obj.first.class
+    else 
+      title_name = @obj.class
+    end 
+    xml.key title_name
+    xml.array do
+      if @obj.class == ActiveRecord::Relation
+        xml << render(:partial => "obj_list.xml.builder")	
+      else
+        xml << render(:partial => "obj_list_attribs.xml.builder")
+      end
+    end 
+  end 
+end

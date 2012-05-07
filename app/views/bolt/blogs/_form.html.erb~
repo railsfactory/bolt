@@ -1,0 +1,24 @@
+
+
+<table id='usr'>
+    <tr>
+    <td width="150"><%= f.label :title %></td>
+    <td><%= f.text_field :title%></td></tr>
+    	
+
+
+
+<tr>
+  <td width="150"> Body
+    <td><br/><br/><%= f.text_area:body,:cols => "100" %>
+</td>
+</tr>
+<tr>
+  <td width="150">  <%= f.label :author %></td>
+    <td><%= f.text_field :author %>
+</td>
+</tr>
+</table>
+
+<div class="tfContainer tfContainerSecond"></div>
+<div class="clearer"></div>

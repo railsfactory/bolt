@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <title>BOLT</title>
+    <link rel="stylesheet" href="/assets/users_style.css" type="text/css"></link>
+    <% bolt_config_javascript_includes.each do |javascript| %>
+    <%= javascript_include_tag(javascript) %>
+    <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  
+  $('.toggle:not(.toggle-open)') .addClass('toggle-closed') .parents('li') .children('ul') .hide();
+  
+  if($.browser.msie){
+  $('#menu ul.navmenu li:last-child .menutop') .css('border-bottom','1px solid #CCC');
+  }
+  
+  $('.toggle') .click(function(){
+  if ($(this) .hasClass('toggle-open')) {
+  $(this) .removeClass('toggle-open') .addClass('toggle-closed') .empty('') .append('+') .parents('li') .children('ul') .slideUp(250);
+  $(this) .parent('.menutop') .removeClass('menutop-open') .addClass('menutop-closed');
+  }else{
+  $(this) .parent('.menutop') .removeClass('menutop-closed') .addClass('menutop-open');
+  $(this) .removeClass('toggle-closed') .addClass('toggle-open') .empty('') .append('&ndash;') .parents('li') .children('ul') .slideDown(250);
+  }
+  
+  })
+  })
+</script>
+
+  </head>
+  <body>
+    <table align="center" width="90%" height="100%" border="2" cellpadding="0" cellspacing="0">
+      <tr>
+	<td>
+	  <table align="center" width="100%" height="100%">
+	    <tr height="10%" bgcolor="#D9BAC7">
+	    
+	      <td ><div><img src="<%=@site_settings.logo_path%>"/></div><div class="heading"><%=@site_settings.slogan%></div></td>
+	    </tr>
+	    <tr height="5%" class="main-menu">
+	                  
+	      <td>
+		<% if(!@top_menu.blank?)%>
+		<ul id="menu">
+		<%   @top_menu.each do |page| %>
+ 		
+		  <li><a href="/<%= format_url_id(page.title) %>"><%= page.title.titleize %></a>
+		  	
+		  	<ul>
+		  		 <% ancpage=Page.where(:ancestry => page.id )
+       ancpage.each do |test|%>
+		  		<li class="submenu">
+		  		  
+		  		  <a href="/<%= format_url_id(test.title) %>"><%= test.title.titleize %></a>
+		  		    
+		  		</li>
+		  	
+		  	<%end%>
+		  </ul> 
+		  </li>
+		<%   end %>  
+		</ul>
+		<% end %>
+	      </td>
+	    </tr>
+	    <tr>
+	      <td valign="top" style="padding-top: 20px;"><%= yield %></td>
+	    </tr>
+	    <tr height="10%">
+	      <td align="center" class="footer_text"><img src="/assets/adv.png"/></td>
+	    </tr>
+	    <tr height="5%" bgcolor="#D9BAC7">
+	      <td align="center" class="footer_text"><%=simple_format(@site_settings.footer_text)
+%></td>
+	    </tr>
+	  </table>
+	</td>
+    </tr></table>
+  </body>
+</html>

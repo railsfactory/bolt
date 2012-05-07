@@ -1,0 +1,17 @@
+
+<h2>View access</h2>
+
+<%= form_for @access, :url => bolt_access_path(@access) do |f| %>
+
+	<%= render :partial => 'bolt/accesses/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+	  <%= link_to 'Cancel', bolt_accesses_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{bolt_show_icon "table"}Back to list".html_safe, bolt_accesses_path %></li>
+<% end %>

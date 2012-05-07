@@ -1,0 +1,2 @@
+module Bolt::UserGroupsHelper
+end

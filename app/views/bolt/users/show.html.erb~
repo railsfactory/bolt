@@ -1,0 +1,94 @@
+<h2>View user</h2>
+
+<%= form_for @backbone_user do |f| %>
+
+	<div class="tfContainer">
+		<%= backbone_text_field f, f.object, :login, {:size => 30} %>
+	</div>
+
+	<div class="tfContainer tfContainerSecond">
+		<%= backbone_text_field f, f.object, :name %>
+	</div>
+
+	<div class="tfContainer">
+		<%= backbone_text_field f, f.object, :email %>
+	</div>
+	
+	<div class="tfContainer tfContainerSecond">
+		<%= backbone_time_zone_select f, f.object, :time_zone, ActiveSupport::TimeZone.us_zones %>
+	</div>
+
+	<% if @session_user.is_admin? && (@backbone_user.is_admin? == false || Backbone::User.has_more_than_one_admin) %>
+		<div class="tfContainer">
+			<%= backbone_select f, f.object, :access_level, backbone_get_access_level_array, {:backbone_label => "Status"} %>
+		</div>
+		<div class="tfContainer tfContainerSecond">
+		</div>
+	<% end %>
+
+	<div class="clearer"></div>
+
+	<p class="submits">
+	  <%= link_to 'Cancel', backbone_users_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+	</p>
+<% end %>
+
+<% if @session_user.is_admin? %>
+
+	<h2>Reset password (admin action - use carefully)</h2>
+
+	<%= form_for @backbone_user, :url => reset_password_backbone_user_path(@backbone_user) do |f| %>
+
+		<div class="tfContainer">
+			<%= backbone_password_field f, f.object, :password, {:backbone_label => "New password"} %>
+		</div>
+		
+		<div class="tfContainer tfContainerSecond">
+			<%= backbone_password_field f, f.object, :password_confirmation, {:backbone_label => "Repeat password"} %>
+		</div>
+	
+		<div class="clearer"></div>
+	
+		<p class="submits">
+			<%= f.submit "Reset", :class => "update" %>
+		</p>
+		
+	<% end %>
+	
+<% elsif @session_user.id == @backbone_user.id %>
+
+	<h2>Change password</h2>
+
+	<%= form_for @backbone_user, :url => update_password_backbone_user_path(@backbone_user) do |f| %>
+
+		<div class="tfContainer">
+			<p><%= label_tag :form_current_password, "Current password" %></p>
+			<p><%= password_field_tag :form_current_password, "", {:class => 'backboneTextField'} %></p>
+		</div>
+
+		<div class="tfContainer tfContainerSecond">
+		</div>
+
+		<div class="tfContainer">
+			<%= backbone_password_field f, f.object, :password, {:backbone_label => "New password"} %>
+		</div>
+		
+		<div class="tfContainer tfContainerSecond">
+			<%= backbone_password_field f, f.object, :password_confirmation, {:backbone_label => "Repeat password"} %>
+		</div>
+
+		<div class="clearer"></div>
+
+		<p class="submits">
+			<%= f.submit "Change", :class => "update" %>
+		</p>
+
+	<% end %>
+<% end %>
+
+<%= content_for :sidebar do %>
+	<% if @session_user.is_admin? %>
+  	<li><%= link_to "#{backbone_show_icon('table')}Back to list".html_safe, backbone_users_path %></li>
+	<% end %>
+<% end %>

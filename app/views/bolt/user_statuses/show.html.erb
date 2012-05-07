@@ -1,0 +1,17 @@
+
+<h2>View user status</h2>
+
+<%= form_for @user_status, :url => backbone_user_status_path(@user_status) do |f| %>
+
+	<%= render :partial => 'backbone/user_statuses/form', :locals => { :f => f } %>
+	
+	<p class="submits">
+	  <%= link_to 'Cancel', backbone_user_statuses_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+	<li><%= link_to "#{backbone_show_icon "table"}Back to list".html_safe, backbone_user_statuses_path %></li>
+<% end %>

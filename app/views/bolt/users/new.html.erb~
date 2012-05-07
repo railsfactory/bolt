@@ -1,0 +1,46 @@
+<h2>Add a new user</h2>
+
+<%= form_for @backbone_user do |form| %>
+
+	<div class="tfContainer">
+		<%= backbone_text_field form, @backbone_user, :login, {:size => 30} %>
+	</div>
+	
+	<div class="tfContainer tfContainerSecond">
+		<%= backbone_text_field form, @backbone_user, :name %>
+	</div>
+	
+	<div class="tfContainer">
+		<%= backbone_text_field form, @backbone_user, :email %>
+	</div>
+
+	<div class="tfContainer tfContainerSecond">
+		<%= backbone_time_zone_select form, @backbone_user, :time_zone, ActiveSupport::TimeZone.us_zones %>
+	</div>
+	
+	<div class="tfContainer">
+		<%= backbone_select form, @backbone_user, :access_level, backbone_get_access_level_array, {:backbone_label => "Status"} %>
+	</div>
+
+	<div class="tfContainer tfContainerSecond">
+	</div>
+
+	<div class="tfContainer">
+		<%= backbone_password_field form, @backbone_user, :password, {:backbone_label => "Password"} %>
+	</div>
+	
+	<div class="tfContainer tfContainerSecond">
+		<%= backbone_password_field form, @backbone_user, :password_confirmation, {:backbone_label => "Repeat password"} %>
+	</div>
+
+	<div class="clearer"></div>
+
+	<p class="submits">
+		<%= form.submit "Add new user", :class => "update" %>
+	</p>
+
+<% end %>
+
+<%= content_for :sidebar do %>
+  <li><%= link_to "#{backbone_show_icon('table')}Back to list".html_safe, backbone_users_path %></li>
+<% end %>
