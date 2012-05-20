@@ -50,7 +50,14 @@ module Bolt
       
       #Images files
       #copy_file "public/bolt/images/", "public/bolt/images/"
-      
+      all_icons = Dir.new(File.expand_path('../templates/public/bolt/images/', __FILE__)).entries
+
+                          for icon in all_icons
+                                  if(File.extname(icon) == ".png" || File.extname(icon) == ".jpg" || File.extname(icon) == ".gif" || File.extname(icon) == ".jpeg")
+            puts "icon is #{icon.inspect}"
+                                          copy_file "public/bolt/images/#{icon}", "public/bolt/images/#{icon}"
+                                  end
+                          end
       #migrations
       migration_template 'db/migrate/bolt_create_users.rb', "db/migrate/bolt_create_users.rb"
       migration_template 'db/migrate/create_groups.rb', "db/migrate/create_groups"

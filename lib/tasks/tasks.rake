@@ -7,7 +7,7 @@ namespace :bolt do
     
       raise "Usage: specify email address, e.g. rake [task] email=mail@boltcms.com" unless ENV.include?("email")
   		    
-      admin = Bolt::User.new( {:login => 'admin123', :name => 'Admin', :email => ENV['email'], :access_level => $BOLT_USER_ACCESS_LEVEL_ADMIN, :password => 'password', :password_confirmation => 'password'} )
+      admin = Bolt::User.new( {:login => 'admin', :name => 'Admin', :email => ENV['email'], :access_level => $BOLT_USER_ACCESS_LEVEL_ADMIN, :password => 'password', :password_confirmation => 'password'} )
 	admin.users_groups.build(:group_id => 6)
       
       unless admin.save
