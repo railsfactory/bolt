@@ -62,7 +62,8 @@ module Bolt
     # PUT /bolt/users/1.json
     def update
       @bolt_user = Bolt::User.find(params[:id])
-
+      @u_groups = @bolt_user.groups.collect{|g| g.id}
+      @groups = Group.all    
       respond_to do |format|
         if @bolt_user.update_attributes(params[:bolt_user])
   	  flash[:success] = 'User was successfully updated.'
