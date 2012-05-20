@@ -25,5 +25,5 @@
 <li>bundle exec rails g bolt:install</li>
 <li>bundle exec rake db:create</li>
 <li>bundle exec rake db:migrate</li>
-<li>bundle exec rake bolt:create_admin email=<<email address>></li>
+<li>bundle exec rake bolt:create_admin email=<email address></li>
 </ul>
