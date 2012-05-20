@@ -1,4 +1,4 @@
-<h2>Refinery CMS</h2>
+<h2>RF CMS</h2>
 
 <p>An open source Ruby on Rails content management system for Rails 3.</p>
 
