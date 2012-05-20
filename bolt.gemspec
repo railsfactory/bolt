@@ -609,14 +609,7 @@ Gem::Specification.new do |s|
     "public/stylesheets/custom.css",
     "public/stylesheets/elements.css",
     "public/stylesheets/login.css",
-    "public/stylesheets/screen.css",
-    "public_org/404.html",
-    "public_org/422.html",
-    "public_org/500.html",
-    "public_org/favicon.ico",
-    "public_org/index.html",
-    "public_org/robots.txt",
-    "script/rails",
+    "public/stylesheets/screen.css"
     
   ]
   s.homepage = %q{http://github.com/railsfactory-pramod/bolt}
