@@ -1,5 +1,5 @@
 <h2>Add a new article</h2>
-<p align="right">Cancel</p><p align="right"><a  href="/bolt/articles" ><%= image_tag("cancel.png") %></a>&nbsp;&nbsp;&nbsp;</p>
+<p align="right">Cancel</p><p align="right"><a  href="/bolt/articles" ><%= image_tag("/bolt/images/cancel.png") %></a>&nbsp;&nbsp;&nbsp;</p>
 <%= form_for @article, :url => bolt_articles_path do |f| %>
 
 <%= render :partial => 'bolt/articles/form', :locals => { :f => f } %>

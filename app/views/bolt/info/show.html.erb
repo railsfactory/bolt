@@ -15,12 +15,14 @@
             <% end %>                        
             <% end %>
           </li>
-
+ 
           <% end %>          
           </ul>         
            <% else %>
         <ul class="navmenu">
-          <center><h3><%= raw(@article.body)%></h3></center>
+         <% if (!@categories.blank?) %>
+          <center><%= raw(@article.body)%></center>
+	<%end%>
              
         </ul>
         <% end %>                    

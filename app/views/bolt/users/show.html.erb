@@ -44,11 +44,13 @@
 <td>
 <%= f.fields_for :users_groups do |g_fields| %>
 <%= g_fields.hidden_field :group_id %>
-<%= g_fields.check_box :_destroy, {:checked => g_fields.object.persisted?}, 0, 1 %><%= g_fields.object.group.name %>
+<%= g_fields.check_box :_destroy, {:checked => g_fields.object.persisted?}, 0, 1 %><%= (g_fields.object && g_fields.object.group) ? g_fields.object.group.name : "" %>
 <% end %>
 
-<% @groups.each do |ug| 
+<% if @groups && @groups.length > 0
+@groups.each do |ug| 
      if(!@u_groups.include?(ug.id))
+end
 %>
 <%= f.fields_for :users_groups, @bolt_user.users_groups.build do |g_fields| %>
 <%= g_fields.check_box :group_id, {:checked => false}, ug.id %><%= ug.name %>&nbsp;&nbsp;

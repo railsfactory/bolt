@@ -137,21 +137,21 @@ function delete_image(image_path,image_id)
 </script>
 <fieldset>
 	<legend>Media Manager</legend>
-	<table  width="100%"><td width="1%"><%= image_tag("media.png",:size => '40x40') %></td><td><font color="blue" size="5">Media Manager</td>
+	<table  width="100%"><td width="1%"><%= image_tag("/bolt/images/media.png",:size => '40x40') %></td><td><font color="blue" size="5">Media Manager</td>
 <table width="100%" height="480" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td width="20%" valign="top">			
 			<ul id="browser" class="filetree">
 				<%  @media.each do |post| %>
 				<li id="<%=post.id%>">
-					<img src='/assets/folder.gif'/>
+					<img src='/bolt/images/folder.gif'/>
 					<span>
 						<a class="mainfolder" onclick="loadFolders(this.id,'<%=post.file_path%>','parentfolder');" href="javascript:void(0)" id="<%=post.id%>"> <%= post.link_title %></a>
 					</span><% childs = Medium.where("parent_id = ? ",post.id)
 					childs.each do |child|
 					 %>
 					<ul>
-						<li id="<%=child.id%>"><img src='/assets/folder.gif' />
+						<li id="<%=child.id%>"><img src='/bolt/images/folder.gif' />
 							<a onclick="loadFolders(this.id,'<%=child.file_path%>','childfolder');" id="<%= child.id %>" href="javascript:void(0);" class="prtfolder"><%=child.link_title%></a>
 						</li>
 					</ul>
@@ -175,7 +175,7 @@ function delete_image(image_path,image_id)
 					<input type="hidden" value="1" name="859c76ecb585a4fb66eb80a33dc57446">	
 				</fieldset>
 				<div class="path">
-						Folder Path: <input type="text" readonly="readonly" id="folderpath" name="folderpath" class="inputbox" value="/assets/images">
+						Folder Path: <input type="text" readonly="readonly" id="folderpath" name="folderpath" class="inputbox" value="/bolt/images">
 						<button type="button" onclick="deletefolder();" id="delete_folder" style="display: none;">Delete Folder</button>
 						<input type="text" name="foldername" id="foldername" class="inputbox">
 						<input type="hidden" name="folderparent" id="folderparent" value="1">
@@ -202,7 +202,7 @@ function delete_image(image_path,image_id)
 </table>
 </fieldset>
 <script>
-loadFolders(1,'/assets/images','parentfolder');
+loadFolders(1,'/bolt/images','parentfolder');
 $(function(){	
 alert($.cookie("clickedid"));
 });

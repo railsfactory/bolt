@@ -1,11 +1,11 @@
-<script type="text/javascript" src="/assets/javascript_functions.js" ></script>
+<script type="text/javascript" src="/bolt/javascripts/javascript_functions.js" ></script>
 
-<table  width="100%"><td width="1%"><%= image_tag("cat.png",:size => '40x40') %></td><td><font color="blue" size="5">Category Manager: Articles</td>
+<table  width="100%"><td width="1%"><%= image_tag("/bolt/images/cat.png",:size => '40x40') %></td><td><font color="blue" size="5">Category Manager: Articles</td>
 
 <td><p style="text-align:right;">new&nbsp;&nbsp;edit&nbsp;&nbsp;delete</p>
-<p style="text-align:right;"><a  href="<%= new_bolt_category_path %>" ><%= image_tag("new.png") %></a>&nbsp;&nbsp;
-<a id="edit"  href="javascript:void(0)"  onclick="edit_rec('/bolt/categories/');"><%= image_tag("edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/categories/destroy_multiple/');"><%= image_tag("delete.png") %></a>
+<p style="text-align:right;"><a  href="<%= new_bolt_category_path %>" ><%= image_tag("/bolt/images/new.png") %></a>&nbsp;&nbsp;
+<a id="edit"  href="javascript:void(0)"  onclick="edit_rec('/bolt/categories/');"><%= image_tag("/bolt/images/edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/categories/destroy_multiple/');"><%= image_tag("/bolt/images/delete.png") %></a>
 &nbsp;&nbsp;</td></table><br/><br>
 <%= render :partial=>"title"%>
 

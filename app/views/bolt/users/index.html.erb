@@ -1,11 +1,11 @@
-<script type="text/javascript" src="/assets/javascript_functions.js" ></script>
+<script type="text/javascript" src="/bolt/javascripts/javascript_functions.js" ></script>
 
-<table  width="100%"><td width="1%"><%= image_tag("user.png",:size => '40x40') %></td><td><font color="blue" size="5"> User Manager: Users</td>
+<table  width="100%"><td width="1%"><%= image_tag("/bolt/images/user.png",:size => '40x40') %></td><td><font color="blue" size="5"> User Manager: Users</td>
 
 <td><p style="text-align:right;">new&nbsp;&nbsp;edit&nbsp;&nbsp;delete</p>
-<p style="text-align:right;"><a  href="<%= new_bolt_user_path %>" ><%= image_tag("new.png") %></a>&nbsp;&nbsp;
-<a id="edit" onclick="edit_rec('/bolt/users/');" href="javascript:void(0)"><%= image_tag("edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/users/destroy_multiple/');"><%= image_tag("delete.png") %></a>
+<p style="text-align:right;"><a  href="<%= new_bolt_user_path %>" ><%= image_tag("/bolt/images/new.png") %></a>&nbsp;&nbsp;
+<a id="edit" onclick="edit_rec('/bolt/users/');" href="javascript:void(0)"><%= image_tag("/bolt/images/edit.png",:size=>"20x20") %></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="delete" href="javascript:void(0)" onclick="delete_rec('/bolt/users/destroy_multiple/');"><%= image_tag("/bolt/images/delete.png") %></a>
 &nbsp;&nbsp;</p></td></table><br/><br>
 <%= render :partial=>'title'%>
 <br/><br/>

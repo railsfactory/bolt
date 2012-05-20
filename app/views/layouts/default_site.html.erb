@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>BOLT</title>
-    <%= stylesheet_link_tag "/bolt/stylesheets/users_style"%>
+    <link rel="stylesheet" href="/bolt/stylesheets/users_style.css" type="text/css"></link>
     <% bolt_config_javascript_includes.each do |javascript| %>
     <%= javascript_include_tag(javascript) %>
     <% end %>
@@ -68,7 +68,7 @@
 	      <td valign="top" style="padding-top: 20px;"><%= yield %></td>
 	    </tr>
 	    <tr height="10%">
-	      <td align="center" class="footer_text"><img src="/assets/adv.png"/></td>
+	      <td align="center" class="footer_text"><img src="/bolt/images/adv.png"/></td>
 	    </tr>
 	    <tr height="5%" bgcolor="#D9BAC7">
 	      <td align="center" class="footer_text"><%=simple_format(@site_settings.footer_text)
