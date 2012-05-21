@@ -2,7 +2,7 @@
 
 <p>An open source Ruby on Rails content management system for Rails 3.</p>
 
-<p>More information at http://refinerycms.com</p>
+<p>More information at http://rfcms.railsfactory.com</p>
 
 <h2>Getting Started</h2>
 
