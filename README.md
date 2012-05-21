@@ -28,7 +28,7 @@
 <li>bundle exec rake bolt:create_admin email="email address"</li>
 </ul>
 
-<h2>We Like suggestions! </h2>
+<h2>We like suggestions! </h2>
 <p>For any suggestions, Queries and comments please contact</p>
 <br/>
 Email: innovation@railsfactory.org<br/>
