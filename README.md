@@ -30,6 +30,5 @@
 
 <h2>We like suggestions! </h2>
 <p>For any suggestions, Queries and comments please contact</p>
-<br/>
 Email: innovation@railsfactory.org<br/>
 Web: http://railsfactory.com/
