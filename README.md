@@ -49,11 +49,11 @@ ActionMailer::Base.smtp_settings = {<br/>
 :authentication => :login<br/>
 }
 </p>
-<li>Install Bolt configuration files to your new or existing project using the following command. - <b>bundle exec rails g bolt:install</b></li>
+<li>Install Bolt configuration files to your new or existing project using the following command. <br/>- <b>bundle exec rails g bolt:install</b></li>
 <li>The above command should be run only once to avoid overwriting the customizations when repeated.</li>
-<li>Create the new database for the project using the command - <b>bundle exec rake db:create</b> </li>
-<li>If you have an already existing database, then simply migrate the database with the command - <b>bundle exec rake db:migrate</b></li>
-<li>To set the initial user or administrator, use the below command - <b>bundle exec rake bolt:create_admin email="email address"</b> </li>
+<li>Create the new database for the project using the command <br/>- <b>bundle exec rake db:create</b> </li>
+<li>If you have an already existing database, then simply migrate the database with the command <br/>- <b>bundle exec rake db:migrate</b></li>
+<li>To set the initial user or administrator, use the below command <br/>- <b>bundle exec rake bolt:create_admin email="email address"</b> </li>
 <li>Note down the user-name and password displayed</li>
 <li>Run the application after a system reboot(if applicable)</li>
 <li>Change your password and start using Bolt.</li>
