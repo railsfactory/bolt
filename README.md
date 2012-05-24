@@ -1,5 +1,8 @@
 <h2>Bolt</h2>
-<p>Bolt is the Content Management System, which allows the end user to publish, edit and modify the content for easy site maintenance from a central page. Bolt is an open source Ruby on Rails Content Management System for Rails 3.</p>
+<p>Bolt is the Content Management System, which allows the end user to do basic operations like publish, edit and modify the content for easy site maintenance from a central page. 
+Bolt is an open source Ruby on Rails Content Management System for Rails 3. It is ready to use and is compatible with rails 3.1.1. 
+This is a very basic CMS and we will keep adding new features to it.
+</p>
 
 <p>Bolt is developed by Railsfactory which builds products, solutions for entrepreneurs, startups and organizations that are looking for shorter lead times to market using Ruby on Rails. Railsfactory is one of the Asia's largest delivery hub for Ruby on Rails and provides Ruby on Rails Solutions for Web site design, E-Business Solutions, Vertical Search Engine Solutions, Product Engineering and of course, CMS.</p>
 
@@ -7,7 +10,6 @@
 
 <h6>Bolt</h6>
 <ul>
-<li>Manage a number of websites with a single instance.</li>
 <li>Flexible content type.</li>
 <li>User friendly.</li>
 <li>Feel good UI.</li>
@@ -28,11 +30,9 @@
 <h2>Installation and Setup</h2>
 <p>Bolt installation can be done by following the below steps:</p>
 <ul>
-<li>Download Bolt application setup.</li>
-<li>Double-click on the setup file to start the installation process.</li>
-<li>Select the directory to install Bolt Gemfile for existing project or create a new Rails Project.</li>
-<li>Add Bolt Gem to your gemfile with command - gem 'bolt'</li>
-<li>Install Bolt and it's dependencies using bundler - sudo bundle install</li>
+<li>Select the directory to install Bolt for existing project or create a new Rails Project.</li>
+<li>Add Bolt Gem to your gemfile with command - gem 'bolt', :git => 'git@github.com:railsfactory/rf_cms.git'</li>
+<li>Install Bolt and it's dependencies using bundler - bundle install</li>
 
 <li>Add your database details to /config/database.yml, if you are adding Bolt to a new project.</li>
 <li>To enable Bolt notification emails (for new users and forgotten passwords) add SMTP Server information to your initializers. For example create a new file called initializers/setup_mail.rb and add the following to it:</li>
@@ -64,8 +64,6 @@ ActionMailer::Base.smtp_settings = {<br/>
 <h2>Configuration Files:</h2>
 <ul>
 <li><b>app/helpers/bolt/config_helper.rb</b> - Allows the user to modify website name, logo, notification e-mail address, dashboard URL etc.</li>
-<li><b>views/bolt/layouts/_left_navigation.html.erb</b> - Configures the left navigation tabs, which can manually be edited and rearranged according to the necessity.</li>
-<li><b>view/bolt/layouts/_right_navigation.html.erb</b> - Configures the right navigation tabs. "Users" tab is added automatically for "Admin" users.</li>
 <li><b>/public/bolt/javascripts/custom.js</b> - This file should be configured by the user. Custom Javascript can be added or modified. Update command does not overwrite this file.</li>
 <li><b>/public/bolt/stylesheets/custom.css</b> - This file should also be configured by the user. Custom Stylesheets can be added, modified or deleted. This file is not overwritten when using Update command.</li>
 </ul>
@@ -73,6 +71,6 @@ ActionMailer::Base.smtp_settings = {<br/>
 <h2>Support:</h2>
 <p>For any suggestions, queries and comments, please contact</p>
 <ul>
-<li>Email: innovation@railsfactory.org</li>
+<li>Email: info@railsfactory.com</li>
 <li>Web: http://railsfactory.com/</li>
 </ul>
