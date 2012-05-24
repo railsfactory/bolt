@@ -63,11 +63,11 @@ ActionMailer::Base.smtp_settings = {<br/>
 <p>Bolt after installation enables the user to set authentication. "Admin" and "User" are the two types of users set up initially. "Admin" can add, edit, modify or delete the users, having complete control over the application. "User" can only modify their own profile. </p>
 <h2>Configuration Files:</h2>
 <ul>
-<li>app/helpers/bolt/config_helper.rb - Allows the user to modify website name, logo, notification e-mail address, dashboard URL etc.</li>
-<li>views/bolt/layouts/_left_navigation.html.erb - Configures the left navigation tabs, which can manually be edited and rearranged according to the necessity.</li>
-<li>view/bolt/layouts/_right_navigation.html.erb - Configures the right navigation tabs. "Users" tab is added automatically for "Admin" users.</li>
-<li>/public/bolt/javascripts/custom.js - This file should be configured by the user. Custom Javascript can be added or modified. Update command does not overwrite this file.</li>
-<li>/public/bolt/stylesheets/custom.css - This file should also be configured by the user. Custom Stylesheets can be added, modified or deleted. This file is not overwritten when using Update command.</li>
+<li><b>app/helpers/bolt/config_helper.rb</b> - Allows the user to modify website name, logo, notification e-mail address, dashboard URL etc.</li>
+<li><b>views/bolt/layouts/_left_navigation.html.erb</b> - Configures the left navigation tabs, which can manually be edited and rearranged according to the necessity.</li>
+<li><b>view/bolt/layouts/_right_navigation.html.erb</b> - Configures the right navigation tabs. "Users" tab is added automatically for "Admin" users.</li>
+<li><b>/public/bolt/javascripts/custom.js</b> - This file should be configured by the user. Custom Javascript can be added or modified. Update command does not overwrite this file.</li>
+<li><b>/public/bolt/stylesheets/custom.css</b> - This file should also be configured by the user. Custom Stylesheets can be added, modified or deleted. This file is not overwritten when using Update command.</li>
 </ul>
 
 <h2>Support:</h2>
