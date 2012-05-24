@@ -37,16 +37,16 @@
 <li>Add your database details to /config/database.yml, if you are adding Bolt to a new project.</li>
 <li>To enable Bolt notification emails (for new users and forgotten passwords) add SMTP Server information to your initializers. For example create a new file called initializers/setup_mail.rb and add the following to it:</li>
 
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.raise_delivery_errors = false
-ActionMailer::Base.smtp_settings = {
-:enable_starttls_auto => false,
-:address => "mail.yourdomain.com",
-:port => 25,
-:domain => "yourdomain.com",
-:user_name => "donotreply@yourdomain.com",
-:password => "whatever",
-:authentication => :login
+ActionMailer::Base.delivery_method = :smtp<br/>
+ActionMailer::Base.raise_delivery_errors = false<br/>
+ActionMailer::Base.smtp_settings = {<br/>
+:enable_starttls_auto => false,<br/>
+:address => "mail.yourdomain.com",<br/>
+:port => 25,<br/>
+:domain => "yourdomain.com",<br/>
+:user_name => "donotreply@yourdomain.com",<br/>
+:password => "whatever",<br/>
+:authentication => :login<br/>
 }
 </p>
 <li>Install Bolt configuration files to your new or existing project using the following command. - bundle exec rails g bolt:install</li>
