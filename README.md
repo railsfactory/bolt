@@ -68,6 +68,13 @@ ActionMailer::Base.smtp_settings = {<br/>
 <li><b>/public/bolt/stylesheets/custom.css</b> - This file should also be configured by the user. Custom Stylesheets can be added, modified or deleted. This file is not overwritten when using Update command.</li>
 </ul>
 
+<h2>Try the Sample CMS Application</h2>
+<ul>
+<li>Home Page - http://bolt.railsfactory.com/</li>
+<li>Admin url is - http://bolt.railsfactory.com/bolt/user_session/new</li>
+<li>Admin credential - admin / password</li>
+</ul>
+
 <h2>Support:</h2>
 <p>For any suggestions, queries and comments, please contact</p>
 <ul>
