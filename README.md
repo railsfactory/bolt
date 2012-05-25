@@ -31,7 +31,7 @@ This is a very basic CMS and we will keep adding new features to it.
 <p>Bolt installation can be done by following the below steps:</p>
 <ul>
 <li>Select the directory to install Bolt for existing project or create a new Rails Project.</li>
-<li>Add Bolt Gem to your gemfile with command - gem 'bolt', :git => 'git@github.com:railsfactory/rf_cms.git'</li>
+<li>Add Bolt Gem to your gemfile with command - gem 'bolt', :git => 'git@github.com:railsfactory/bolt.git'</li>
 <li>Install Bolt and it's dependencies using bundler - bundle install</li>
 
 <li>Add your database details to /config/database.yml, if you are adding Bolt to a new project.</li>
